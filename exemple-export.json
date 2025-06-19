@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "exportDate": "2024-01-15T10:30:00.000Z",
+  "cards": [
+    {
+      "id": 1234567890,
+      "wordFr": "Bonjour",
+      "wordAr": "السلام عليكم",
+      "example": "السلام عليكم، كيف حالك؟ - Bonjour, comment vas-tu ?",
+      "arabicClassic": "مرحبا",
+      "createdAt": "2024-01-01T10:00:00.000Z",
+      "repetitions": 3,
+      "easeFactor": 2.6,
+      "interval": 7,
+      "nextReview": "2024-01-22T10:00:00.000Z",
+      "lastReviewed": "2024-01-15T10:00:00.000Z"
+    }
+  ],
+  "stats": {
+    "daily": {
+      "Mon Jan 15 2024": {
+        "reviewed": 10,
+        "correct": 8
+      }
+    },
+    "lastReviewDate": "Mon Jan 15 2024"
+  },
+  "metadata": {
+    "totalCards": 15,
+    "appName": "Répétition Espacée - Arabe"
+  }
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Répétition Espacée - Arabe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4A90E2">
+</head>
+<body>
+    <div class="app">
+        <nav class="navbar">
+            <button class="nav-btn active" data-section="review">Réviser</button>
+            <button class="nav-btn" data-section="manage">Gérer</button>
+            <button class="nav-btn" data-section="stats">Statistiques</button>
+        </nav>
+
+        <!-- Section Révision -->
+        <section id="review" class="section active">
+            <div class="review-container">
+                <div class="card-count">
+                    <span id="cards-remaining">0</span> cartes à réviser
+                </div>
+                <div class="flashcard" id="flashcard">
+                    <div class="card-content front">
+                        <p id="word-fr">Cliquez sur "Commencer" pour réviser</p>
+                    </div>
+                    <div class="card-content back hidden">
+                        <p id="word-ar" class="arabic"></p>
+                        <div class="extra-info hidden" id="extra-info">
+                            <p class="example" id="example"></p>
+                            <p class="arabic-classic" id="arabic-classic"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button id="flip-btn" class="btn-primary hidden">Voir la réponse</button>
+                    <button id="start-btn" class="btn-primary">Commencer</button>
+                    <div id="rating-buttons" class="rating-buttons hidden">
+                        <button class="rating-btn" data-rating="1">Je ne connais pas</button>
+                        <button class="rating-btn" data-rating="2">Difficile</button>
+                        <button class="rating-btn" data-rating="3">Correct</button>
+                        <button class="rating-btn" data-rating="4">Facile</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Gestion des cartes -->
+        <section id="manage" class="section">
+            <div class="manage-container">
+                <div class="action-buttons">
+                    <button id="add-card-btn" class="btn-primary">Ajouter une carte</button>
+                    <button id="export-btn" class="btn-secondary">Exporter les données</button>
+                    <button id="import-btn" class="btn-secondary">Importer des données</button>
+                    <input type="file" id="import-file" accept=".json" style="display: none;">
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="search" placeholder="Rechercher...">
+                </div>
+                <div id="cards-list" class="cards-list"></div>
+            </div>
+        </section>
+
+        <!-- Section Statistiques -->
+        <section id="stats" class="section">
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Total de cartes</h3>
+                    <p id="total-cards">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Cartes révisées aujourd'hui</h3>
+                    <p id="reviewed-today">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Taux de réussite</h3>
+                    <p id="success-rate">0%</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Jours consécutifs</h3>
+                    <p id="streak">0</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal pour ajouter/éditer -->
+        <div id="modal" class="modal hidden">
+            <div class="modal-content">
+                <h2 id="modal-title">Ajouter une carte</h2>
+                <form id="card-form">
+                    <div class="form-group">
+                        <label for="word-fr-input">Mot en français</label>
+                        <input type="text" id="word-fr-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="word-ar-input">Traduction arabe dialectale</label>
+                        <input type="text" id="word-ar-input" class="arabic-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="example-input">Phrase d'exemple</label>
+                        <textarea id="example-input" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="arabic-classic-input">Arabe classique</label>
+                        <input type="text" id="arabic-classic-input" class="arabic-input">
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="submit" class="btn-primary">Sauvegarder</button>
+                        <button type="button" id="cancel-btn" class="btn-secondary">Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Enregistrement du Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => console.log('Service Worker enregistré'))
+                .catch(err => console.log('Erreur Service Worker:', err));
+        }
+    </script>
+</body>
+</html>
